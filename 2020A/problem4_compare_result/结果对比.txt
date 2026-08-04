@@ -1,0 +1,25 @@
+问题4：差分进化与模拟退火对比
+变量范围：各温区在实验设定基础上 +/-10 C，速度65~100 cm/min
+面积项复用问题3：S3 = integral from first 217 C crossing to peak of (T-217) dt
+对称项：D_sym = normalized mirror area error around peak time above 217 C
+综合目标: J = alpha*(S3/800.0) + (1-alpha)*D_sym, alpha=0.7
+
+Differential Evolution
+  T1=178.1691 C, T6=190.8363 C, T7=244.3356 C, T8=264.9999 C
+  v=89.7929 cm/min, feasible=True, violation=0.000000
+  S3=516.8231, total_above_217=818.5392, D_sym=0.262754
+  S3_norm=0.646029, D_norm=0.262754, J=0.531046
+  v_up=2.7666 C/s, v_down=-1.8080 C/s
+  t_150_190=96.00 s, t_above_217=58.00 s
+  T_peak=240.10 C @ 235.50 s
+
+Simulated Annealing best(seed=1)
+  T1=178.0451 C, T6=193.5592 C, T7=239.9984 C, T8=264.6440 C
+  v=88.5527 cm/min, feasible=True, violation=0.000000
+  S3=513.2828, total_above_217=822.1154, D_sym=0.249664
+  S3_norm=0.641603, D_norm=0.249664, J=0.524022
+  v_up=2.7626 C/s, v_down=-1.8046 C/s
+  t_150_190=98.00 s, t_above_217=58.00 s
+  T_peak=240.03 C @ 238.50 s
+
+模拟退火最优种子: 1

@@ -1,29 +1,32 @@
-"""统一仿真接口 - 基于已验证的平滑切换双k模型"""
+"""统一仿真接口 - 基于已验证的模型三"""
 import numpy as np
 from scipy.integrate import solve_ivp
 from furnace import sigma
 
 # ==================== 固定模型参数 ====================
-KH = 0.01966939     # 加热换热系数
-KC = 0.00591111     # 冷却换热系数
+KH = 0.019221       # 模型三：加热换热系数
+KC = 0.009638       # 模型三：冷却换热系数
 BETA = 0.5          # Sigmoid切换平滑度
 A = 1.178           # 炉温场Sigmoid平滑参数
+COOLING_CENTER = 362.94  # 模型三：冷却过渡中心位置 (cm)
+COOLING_WIDTH = 29.27    # 模型三：冷却段5%-95%过渡宽度 (cm)
+AC = 2 * np.log(19) / COOLING_WIDTH
 
 # ==================== 炉子几何参数 (cm) ====================
 ENTRANCE_TO_ZONE1 = 25.0
-ZONE_LENGTH = 52.5
+ZONE_LENGTH = 30.5
 GAP_LENGTH = 5.0
 NUM_ZONES = 11
 
-# Sigmoid中点位置 (来自已验证的furnace.py，保持不变)
-SIGMOID_POSITIONS = [25, 200, 235.5, 271, 342]
+# Sigmoid中点位置。前四个由题面几何给出，冷却段由模型三辨识得到。
+SIGMOID_POSITIONS = [25, 200, 235.5, 271, COOLING_CENTER]
 
 
 def build_Tf(T1, T6, T7, T8):
     """根据温区设定构造炉内环境温度函数 Tf(x)
 
-    构造方式：Tf(x)=T₀ + ΣΔᵢ·σ(a·(x-pᵢ))
-    其中Δᵢ为相邻温区温差，pᵢ为Sigmoid中点位置。
+    前四个温区过渡使用固定平滑参数 a=1.178；
+    最后冷却段使用模型三辨识得到的冷却中心和过渡宽度。
 
     参数
     ----
@@ -46,8 +49,9 @@ def build_Tf(T1, T6, T7, T8):
 
     def Tf(x):
         result = 25.0
-        for amp, pos in zip(amps, SIGMOID_POSITIONS):
+        for amp, pos in zip(amps[:-1], SIGMOID_POSITIONS[:-1]):
             result += amp * sigma(A * (x - pos))
+        result += amps[-1] * sigma(AC * (x - COOLING_CENTER))
         return result
 
     return Tf
@@ -56,7 +60,7 @@ def build_Tf(T1, T6, T7, T8):
 def simulate(T1, T6, T7, T8, speed, t_max=None, dt=0.5, fast=False):
     """统一仿真接口
 
-    使用已验证的平滑切换双k换热模型，求解PCB中心温度。
+    使用模型三（双k + 冷却中心 + 冷却宽度）求解PCB中心温度。
 
     参数
     ----
@@ -77,9 +81,9 @@ def simulate(T1, T6, T7, T8, speed, t_max=None, dt=0.5, fast=False):
     Tf = build_Tf(T1, T6, T7, T8)
     v = speed / 60.0  # cm/min → cm/s
 
-    # 自适应仿真时长：炉长652.5cm + 30cm余量
+    # 自适应仿真时长：小温区11末端 + 30cm余量
     if t_max is None:
-        total_len = ZONE_POSITIONS[11][1]  # zone 11 end ≈ 652.5 cm
+        total_len = ZONE_POSITIONS[11][1]  # zone 11 end = 410.5 cm
         t_max = (total_len + 30) / v * 1.1
 
     t_eval = np.arange(0, t_max + dt, dt)

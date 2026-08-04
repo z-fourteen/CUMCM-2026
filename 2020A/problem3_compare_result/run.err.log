@@ -1,0 +1,68 @@
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 26102 (\N{CJK UNIFIED IDEOGRAPH-65F6}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 38388 (\N{CJK UNIFIED IDEOGRAPH-95F4}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 28201 (\N{CJK UNIFIED IDEOGRAPH-6E29}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 24230 (\N{CJK UNIFIED IDEOGRAPH-5EA6}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 38382 (\N{CJK UNIFIED IDEOGRAPH-95EE}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 39064 (\N{CJK UNIFIED IDEOGRAPH-9898}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 20004 (\N{CJK UNIFIED IDEOGRAPH-4E24}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 31181 (\N{CJK UNIFIED IDEOGRAPH-79CD}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 20248 (\N{CJK UNIFIED IDEOGRAPH-4F18}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 21270 (\N{CJK UNIFIED IDEOGRAPH-5316}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 31639 (\N{CJK UNIFIED IDEOGRAPH-7B97}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 27861 (\N{CJK UNIFIED IDEOGRAPH-6CD5}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 28809 (\N{CJK UNIFIED IDEOGRAPH-7089}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 26354 (\N{CJK UNIFIED IDEOGRAPH-66F2}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 32447 (\N{CJK UNIFIED IDEOGRAPH-7EBF}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 23545 (\N{CJK UNIFIED IDEOGRAPH-5BF9}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:64: UserWarning: Glyph 27604 (\N{CJK UNIFIED IDEOGRAPH-6BD4}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 28201 (\N{CJK UNIFIED IDEOGRAPH-6E29}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 24230 (\N{CJK UNIFIED IDEOGRAPH-5EA6}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 38382 (\N{CJK UNIFIED IDEOGRAPH-95EE}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 39064 (\N{CJK UNIFIED IDEOGRAPH-9898}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 20004 (\N{CJK UNIFIED IDEOGRAPH-4E24}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 31181 (\N{CJK UNIFIED IDEOGRAPH-79CD}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 20248 (\N{CJK UNIFIED IDEOGRAPH-4F18}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 21270 (\N{CJK UNIFIED IDEOGRAPH-5316}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 31639 (\N{CJK UNIFIED IDEOGRAPH-7B97}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 27861 (\N{CJK UNIFIED IDEOGRAPH-6CD5}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 28809 (\N{CJK UNIFIED IDEOGRAPH-7089}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 26354 (\N{CJK UNIFIED IDEOGRAPH-66F2}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 32447 (\N{CJK UNIFIED IDEOGRAPH-7EBF}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 23545 (\N{CJK UNIFIED IDEOGRAPH-5BF9}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 27604 (\N{CJK UNIFIED IDEOGRAPH-6BD4}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 26102 (\N{CJK UNIFIED IDEOGRAPH-65F6}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
+D:\05_fourteen\CUMCM2026\2020\A\CUMCM-2026\compare_problem3_methods.py:65: UserWarning: Glyph 38388 (\N{CJK UNIFIED IDEOGRAPH-95F4}) missing from font(s) DejaVu Sans.
+  fig.savefig(os.path.join(OUT_DIR, '炉温曲线对比.png'), dpi=150)
