@@ -1,0 +1,21 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# Logs and temporary files
+*.log
+*.err
+*.tmp
+*.temp
+*.bak
+*.swp
+~$*
+
+# OS and editor files
+.vscode/
+.idea/
+
+# Local contest attachments or private source materials
+resource/

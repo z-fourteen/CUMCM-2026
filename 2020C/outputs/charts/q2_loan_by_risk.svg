@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="460.0" y="34" font-size="22" text-anchor="middle" font-weight="700" fill="#1f2937" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">第二问：各风险等级放贷金额</text>
+<line x1="100" y1="425" x2="880" y2="425" stroke="#9ca3af"/>
+<line x1="100" y1="70" x2="100" y2="425" stroke="#9ca3af"/>
+<line x1="100" y1="425.0" x2="880" y2="425.0" stroke="#e5e7eb"/>
+<text x="88" y="430.0" font-size="12" text-anchor="end" font-weight="400" fill="#6b7280" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">0</text>
+<line x1="100" y1="336.25" x2="880" y2="336.25" stroke="#e5e7eb"/>
+<text x="88" y="341.25" font-size="12" text-anchor="end" font-weight="400" fill="#6b7280" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">1431.05</text>
+<line x1="100" y1="247.5" x2="880" y2="247.5" stroke="#e5e7eb"/>
+<text x="88" y="252.5" font-size="12" text-anchor="end" font-weight="400" fill="#6b7280" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">2862.10</text>
+<line x1="100" y1="158.75" x2="880" y2="158.75" stroke="#e5e7eb"/>
+<text x="88" y="163.75" font-size="12" text-anchor="end" font-weight="400" fill="#6b7280" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">4293.15</text>
+<line x1="100" y1="70.0" x2="880" y2="70.0" stroke="#e5e7eb"/>
+<text x="88" y="75.0" font-size="12" text-anchor="end" font-weight="400" fill="#6b7280" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">5724.20</text>
+<rect x="100.0" y="329.6082075953237" width="181.5" height="95.39179240467632" rx="4" fill="#2563eb"/>
+<text x="190.75" y="321.6082075953237" font-size="13" text-anchor="middle" font-weight="600" fill="#111827" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">1538.15万元</text>
+<text x="190.75" y="455" font-size="13" text-anchor="middle" font-weight="400" fill="#374151" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">低风险</text>
+<rect x="299.5" y="70.0" width="181.5" height="355.0" rx="4" fill="#16a34a"/>
+<text x="390.25" y="62.0" font-size="13" text-anchor="middle" font-weight="600" fill="#111827" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">5724.20万元</text>
+<text x="390.25" y="455" font-size="13" text-anchor="middle" font-weight="400" fill="#374151" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">较低风险</text>
+<rect x="499.0" y="255.2180339025625" width="181.5" height="169.7819660974375" rx="4" fill="#f59e0b"/>
+<text x="589.75" y="247.2180339025625" font-size="13" text-anchor="middle" font-weight="600" fill="#111827" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">2737.65万元</text>
+<text x="589.75" y="455" font-size="13" text-anchor="middle" font-weight="400" fill="#374151" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">中风险</text>
+<rect x="698.5" y="425.0" width="181.5" height="0.0" rx="4" fill="#dc2626"/>
+<text x="789.25" y="417.0" font-size="13" text-anchor="middle" font-weight="600" fill="#111827" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">0万元</text>
+<text x="789.25" y="455" font-size="13" text-anchor="middle" font-weight="400" fill="#374151" font-family="Microsoft YaHei, SimHei, Arial, sans-serif">高风险</text>
+</svg>
