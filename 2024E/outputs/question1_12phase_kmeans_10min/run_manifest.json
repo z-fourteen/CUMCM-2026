@@ -1,0 +1,14 @@
+{
+  "feature_dimension": 12,
+  "interval_minutes": 10,
+  "selected_k": {
+    "工作日": 3,
+    "周末及普通休息日": 3,
+    "五一节假日": 3
+  },
+  "period_counts": {
+    "五一节假日": 4,
+    "周末及普通休息日": 5,
+    "工作日": 8
+  }
+}
