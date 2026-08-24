@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "input": "2024E\\outputs\\question1_12phase_kmeans_10min\\06_每时段每相位流量长表.csv",
+  "intersections": 12,
+  "cycle_candidates": [
+    60,
+    75,
+    90,
+    105,
+    120,
+    135,
+    150
+  ],
+  "main_road_only_objective": true,
+  "right_turn": "always-permitted; pedestrian factor applied in v2",
+  "queue_propagation": true,
+  "demand_assumption": "Question 1 movement demand replicated with scale 1.0"
+}
