@@ -104,6 +104,12 @@
   舞龙运动连续、平稳，不发生脱节、跳跃或瞬时速度突变；在分段轨迹连接处满足位置连续与切向连续。
 \item
   以地面为二维平面，忽略板凳厚度、把手高度差以及人员运动对几何关系的影响。
+\item
+  板凳在地面上的投影视为标准闭矩形，其中心线通过前、后把手中心；忽略板端倒角、
+  把手孔洞及局部加工误差对实体边界的影响。
+\item
+  两块无直接连接关系的板凳只要边界接触或内部重叠即判定发生碰撞；相邻板凳在共同
+  把手处的结构性接触不计为碰撞，且仅研究首次接触状态，不考虑碰撞后的变形与动力学响应。
 \end{enumerate}
 
 \hypertarget{ux7b26ux53f7ux8bf4ux660e}{%
@@ -128,7 +134,7 @@
 -- \\
 \(l\) & 普通龙身前、后把手的中心距，\(l=1.65\) & m \\
 \(F\) & 普通龙身相邻把手极角之间的递推映射 & -- \\
-\(B_i(t)\) & \(t\) 时刻第 \(i\) 节普通龙身所占的闭矩形区域 & -- \\
+\(B_i(t)\) & \(t\) 时刻第 \(i\) 块板凳所占的闭矩形区域，\(B_0\) 为龙头 & -- \\
 \(\boldsymbol d_i\) &
 相邻把手连杆向量，\(\boldsymbol P_i-\boldsymbol P_{i-1}\) & m \\
 \bottomrule
@@ -389,5 +395,188 @@ B_1(\tau)\cap B_{j-i+1}(\tau)
 \]
 龙头板凳的把手中心距为 \(2.86\,\mathrm m\)，不服从普通龙身的映射 \(F\)，因而上述
 结论不包含龙头与龙身之间的碰撞。
+
+\subsection{板凳矩形模型与碰撞判据}
+
+将龙头板凳记为 \(B_0\)，第 \(i\) 节普通龙身记为 \(B_i\)。板凳 \(B_i\) 的两个把手
+中心分别为 \(\boldsymbol P_i\) 和 \(\boldsymbol P_{i+1}\)。定义
+\[
+\boldsymbol u_i=
+\frac{\boldsymbol P_{i+1}-\boldsymbol P_i}
+{\|\boldsymbol P_{i+1}-\boldsymbol P_i\|},
+\qquad
+\boldsymbol n_i=
+\begin{pmatrix}-u_{iy}\\u_{ix}\end{pmatrix},
+\qquad
+\boldsymbol c_i=\frac{\boldsymbol P_i+\boldsymbol P_{i+1}}{2}.
+\]
+其中 \(\boldsymbol u_i\)、\(\boldsymbol n_i\) 分别为板凳的轴向和法向单位向量，
+\(\boldsymbol c_i\) 为板凳中心。设板宽为 \(w=0.30\,\mathrm m\)，孔中心至板端的
+距离为 \(e=0.275\,\mathrm m\)，则板凳的半长和半宽分别为
+\[
+h_i=\frac{\|\boldsymbol P_{i+1}-\boldsymbol P_i\|}{2}+e,
+\qquad d=\frac{w}{2}=0.15\,\mathrm m.
+\]
+从而板凳所占的闭矩形区域可表示为
+\[
+B_i(t)=\left\{\boldsymbol c_i+s\boldsymbol u_i+q\boldsymbol n_i:
+|s|\leq h_i,\ |q|\leq d\right\}.
+\]
+
+采用分离轴定理判断两个矩形是否相交。对板凳 \(B_i\) 与 \(B_j\)，只需考察
+\[
+\mathcal A_{ij}=\{\boldsymbol u_i,\boldsymbol n_i,
+\boldsymbol u_j,\boldsymbol n_j\}
+\]
+四个候选分离轴。对任意 \(\boldsymbol a\in\mathcal A_{ij}\)，矩形 \(B_i\) 在该轴上的
+投影半径为
+\[
+\rho_i(\boldsymbol a)
+=h_i|\boldsymbol u_i^{\mathsf T}\boldsymbol a|
++d|\boldsymbol n_i^{\mathsf T}\boldsymbol a|.
+\]
+若存在一个候选轴满足
+\[
+\left|(\boldsymbol c_j-\boldsymbol c_i)^{\mathsf T}\boldsymbol a\right|
+>\rho_i(\boldsymbol a)+\rho_j(\boldsymbol a),
+\]
+则两矩形分离；若四个轴均不满足上式，则两矩形接触或重叠，判定发生碰撞。相邻板凳
+在把手处存在结构连接，故仅检测 \(j-i\geq2\) 的板凳对。
+
+\subsection{候选碰撞对与首次接触搜索}
+
+\subsubsection{候选碰撞范围}
+
+由前述证明，若首次碰撞发生在普通龙身之间，则必涉及 \(B_1\)；而龙头 \(B_0\)
+不满足普通龙身的统一递推关系，必须保留其与全部非相邻板凳的碰撞检测。因此主搜索
+所需考察的候选集合为
+\[
+\mathcal C=\{(0,j):j=2,3,\ldots,222\}
+\cup\{(1,j):j=3,4,\ldots,222\}.
+\]
+候选对数量由全体非相邻板凳对的
+\(\binom{222}{2}=24531\) 对减少为
+\[
+221+220=441\text{ 对},
+\]
+仅为原范围的 \(1.80\%\)。
+
+\subsubsection{最小间隙与碰撞状态}
+
+定义缩减候选集上的最小间隙函数
+\[
+g(t)=\min_{(i,j)\in\mathcal C}\operatorname{dist}
+\bigl(B_i(t),B_j(t)\bigr),
+\]
+其中矩形相离时，\(\operatorname{dist}\) 取两闭矩形间的最短欧氏距离；接触或重叠时
+取 0。进一步定义碰撞状态函数
+\[
+I(t)=
+\begin{cases}
+0, & g(t)>0,\quad\text{尚未碰撞},\\
+1, & g(t)=0,\quad\text{接触或重叠}.
+\end{cases}
+\]
+搜索目标即为使 \(I(t)\) 首次由 0 变为 1 的临界时刻 \(t^*\)。
+
+\subsubsection{首次接触搜索算法}
+
+取粗扫描步长 \(\Delta t=1\,\mathrm s\)，二分终止容差
+\(\varepsilon_t=10^{-9}\,\mathrm s\)。具体步骤如下：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{计算当前构型。} 对给定时刻 \(t\)，先由问题一的位置递推模型求得全部
+  224 个把手坐标，再据此构造 223 个板凳矩形。
+\item
+  \textbf{检测缩减候选集。} 仅对 \((i,j)\in\mathcal C\) 应用分离轴定理，并计算
+  \(g(t)\) 与状态 \(I(t)\)。此步骤不遍历候选集以外的板凳对。
+\item
+  \textbf{顺序粗扫描。} 从 \(t_0=0\) 开始依次计算
+  \(t_k=k\Delta t\)。若 \(I(t_k)=0\) 且 \(I(t_{k+1})=1\)，则首次接触位于
+  \([t_k,t_{k+1}]\)。计算得到初始括区间
+  \[
+  [t_L,t_R]=[412,413]\,\mathrm s,
+  \qquad I(t_L)=0,\quad I(t_R)=1.
+  \]
+\item
+  \textbf{二分精化。} 令 \(t_M=(t_L+t_R)/2\)。若 \(I(t_M)=0\)，置
+  \(t_L=t_M\)；否则置 \(t_R=t_M\)。重复该过程，始终保持左端点未碰撞、右端点
+  已碰撞。
+\item
+  \textbf{终止并输出。} 当 \(t_R-t_L<\varepsilon_t\) 时停止，取碰撞侧端点
+  \(t^*=t_R\)，随后复用问题一的速度递推模型计算临界时刻全部把手的速度。
+\end{enumerate}
+
+由于 \(g(t)\) 是多个板凳对间隙函数的下包络，且接触后被截断为 0，其整体并非光滑
+函数。因此采用基于碰撞状态的括区间二分法，可避免直接使用光滑函数求根方法时出现
+导数不存在或零值区间导致的失效。
+
+\subsection{计算结果}
+
+求得板凳龙首次发生碰撞的临界时刻为
+\[
+\boxed{t^*=412.473837683\ \mathrm s}.
+\]
+首碰板凳对为 \(B_0\) 与 \(B_8\)，即龙头板凳与第 8 节普通龙身；接触点坐标为
+\[
+\boldsymbol Q=(1.474395,\ 2.110665)^{\mathsf T}\ \mathrm m.
+\]
+此时龙头前把手的极角为 \(26.146534759\,\mathrm{rad}\)，距螺线中心
+\(2.288742638\,\mathrm m\)。代表把手的位置与速度如下表所示，完整结果写入
+\texttt{result2.xlsx}。
+
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule
+把手 & \(x/\mathrm m\) & \(y/\mathrm m\) & \(v/(\mathrm{m/s})\) \\
+\midrule
+\endhead
+龙头 & 1.209931 & 1.942784 & 1.000000 \\
+第1节龙身 & -1.643792 & 1.753399 & 0.991551 \\
+第51节龙身 & 1.281201 & 4.326588 & 0.976858 \\
+第101节龙身 & -0.536246 & -5.880138 & 0.974550 \\
+第151节龙身 & 0.968840 & -6.957479 & 0.973608 \\
+第201节龙身 & -7.893161 & -1.230764 & 0.973096 \\
+龙尾（后） & 0.956217 & 8.322736 & 0.972938 \\
+\bottomrule
+\end{longtable}
+
+\subsection{结果验证与效率分析}
+
+首先在临界时刻邻域将缩减候选集与全部非相邻板凳对进行独立对照，结果见下表。全量
+检测仅用于验证，不参与主求解。
+
+\begin{longtable}[]{@{}lrrlc@{}}
+\toprule
+检测时刻 & 缩减搜索最小间隙/m & 全量检测最小间隙/m & 控制板凳对 & 状态 \\
+\midrule
+\endhead
+\(t^*-10^{-6}\,\mathrm s\) & \(2.630\times10^{-8}\) &
+\(2.630\times10^{-8}\) & \((B_0,B_8)\) & 分离 \\
+\(t^*\) & 0 & 0 & \((B_0,B_8)\) & 接触 \\
+\(t^*+10^{-6}\,\mathrm s\) & 0 & 0 & \((B_0,B_8)\) & 重叠 \\
+\bottomrule
+\end{longtable}
+
+搜索效率与数值精度对比如下。
+
+\begin{longtable}[]{@{}lrrl@{}}
+\toprule
+指标 & 全量方法 & 缩减方法 & 对比或误差 \\
+\midrule
+\endhead
+候选板凳对数 & 24531 & 441 & 缩减 55.63 倍 \\
+搜索时间/s & 26.401 & 5.609 & 加速 4.71 倍 \\
+临界时刻/s & 412.473837682512 & 412.473837682977 &
+差 \(4.657\times10^{-10}\,\mathrm s\) \\
+定长约束最大残差/m & -- & \(3.395\times10^{-13}\) & 满足计算精度 \\
+与原结果表最大绝对差 & -- & \(4.998\times10^{-7}\) & 小于六位小数舍入误差 \\
+\bottomrule
+\end{longtable}
+
+两种检测范围得到的碰撞状态、控制板凳对和临界时刻均一致，说明候选范围化简未遗漏
+首次碰撞对象。总体加速比低于候选对数量的缩减倍数，是因为每个时刻仍需递推全部把手
+位置。
 
 \end{document}

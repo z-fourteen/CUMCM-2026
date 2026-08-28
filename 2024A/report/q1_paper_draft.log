@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2025.11.30)  28 AUG 2026 16:30
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2025.11.30)  28 AUG 2026 16:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**d:/05_fourteen/CUMCM2026/CUMCM2026/2024A/report/q1_paper_draft.tex
-(d:/05_fourteen/CUMCM2026/CUMCM2026/2024A/report/q1_paper_draft.tex
+**./q1_paper_draft.tex
+(q1_paper_draft.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (D:\02_program\MikTex\tex/latex/ctex\ctexart.cls
@@ -1095,38 +1095,38 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.47441pt on input line 83.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 10.95pt on input line 120.
+(Font)              scaled to size 10.95pt on input line 126.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 7.665pt on input line 120.
+(Font)              scaled to size 7.665pt on input line 126.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 5.475pt on input line 120.
+(Font)              scaled to size 5.475pt on input line 126.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 10.95099pt on input line 120.
+(Font)              scaled to size 10.95099pt on input line 126.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 7.66568pt on input line 120.
+(Font)              scaled to size 7.66568pt on input line 126.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 5.4755pt on input line 120.
+(Font)              scaled to size 5.4755pt on input line 126.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 10.94882pt on input line 120.
+(Font)              scaled to size 10.94882pt on input line 126.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 7.66417pt on input line 120.
+(Font)              scaled to size 7.66417pt on input line 126.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 5.47441pt on input line 120.
+(Font)              scaled to size 5.47441pt on input line 126.
  [1
 
 ]
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmss' (encoding: TU).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `TU/SimSun(0)/m/sl' in size <10.95> not availabl
 e
 (Font)              Font shape `TU/SimSun(0)/m/it' tried instead on input line 
 167.
  [2]
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmss' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 File: ../figures/velocity_transfer.jpg Graphic file (type bmp)
 <../figures/velocity_transfer.jpg>
- [3]
+ [3] [4]
 
 Package fontspec Info: FangSong scale = 0.9764239397402466.
 
@@ -1157,23 +1157,22 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 ge=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
- [4]
 File: ../figures/q1_numerical_flow.jpg Graphic file (type bmp)
 <../figures/q1_numerical_flow.jpg>
  [5]
-[6] [7] (q1_paper_draft.aux)
+[6] [7] [8] [9] [10] (q1_paper_draft.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/07/14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 23089 strings out of 409617
- 460696 string characters out of 5778884
- 1946191 words of memory out of 5000000
- 44848 multiletter control sequences out of 15000+600000
+ 23114 strings out of 409617
+ 461498 string characters out of 5778884
+ 1950191 words of memory out of 5000000
+ 44874 multiletter control sequences out of 15000+600000
  567797 words of font info for 123 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 93i,9n,120p,1059b,460s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 93i,9n,120p,1013b,461s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on q1_paper_draft.pdf (7 pages).
+Output written on q1_paper_draft.xdv (10 pages, 139856 bytes).

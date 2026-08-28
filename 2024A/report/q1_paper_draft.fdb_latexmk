@@ -1,12 +1,12 @@
 # Fdb version 4
-["xdvipdfmx"] 1787905054.20559 "q1_paper_draft.xdv" "q1_paper_draft.pdf" "q1_paper_draft" 1787905054.74807 0
-  "q1_paper_draft.xdv" 1787905053 93376 d1db45b52407c0f423a8e365def2500c "xelatex"
+["xdvipdfmx"] 1787907272.095 "q1_paper_draft.xdv" "q1_paper_draft.pdf" "q1_paper_draft" 1787907272.56667 0
+  "q1_paper_draft.xdv" 1787907271 139856 38cb4070e78a152d5d679345a9212c70 "xelatex"
   (generated)
   "q1_paper_draft.pdf"
   (rewritten before read)
-["xelatex"] 1787905050.96216 "q1_paper_draft.tex" "q1_paper_draft.xdv" "q1_paper_draft" 1787905054.73897 0
-  "../figures/q1_numerical_flow.jpg" 1787904830 260127 8998b8f52d8f51d44bc8d500fdb5bda0 ""
-  "../figures/velocity_transfer.jpg" 1787904830 259745 08cefd5bbbd4ec297552a58190d51baf ""
+["xelatex"] 1787907269.46857 "q1_paper_draft.tex" "q1_paper_draft.xdv" "q1_paper_draft" 1787907272.55728 0
+  "../figures/q1_numerical_flow.jpg" 1787906256 260127 8998b8f52d8f51d44bc8d500fdb5bda0 ""
+  "../figures/velocity_transfer.jpg" 1787906256 259745 08cefd5bbbd4ec297552a58190d51baf ""
   "C:/Users/Lenovo/AppData/Local/MiKTeX/miktex/data/le/xetex/xelatex.fmt" 1764460176 37536306 cf07ad517ad6da95b49da360855cf53f ""
   "C:/windows/Fonts/msyh.ttc" 1734079007 19704352 1e10e74402e59d54499af795caf0b135 ""
   "D:/02_program/MikTex/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136743454 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
@@ -130,8 +130,8 @@
   "D:/02_program/MikTex/tex/xelatex/xecjk/xeCJK.cfg" 1659726270 408 7369c27beaa819c5f46de3795b22ee3e ""
   "D:/02_program/MikTex/tex/xelatex/xecjk/xeCJK.sty" 1659726270 183137 ed372550124703b2b73cbcc0b47cb20f ""
   "D:/02_program/MikTex/tex/xelatex/xecjk/xeCJKfntef.sty" 1659726270 39577 b470f8a1dbecc9c45c9bf05ca7db9188 ""
-  "q1_paper_draft.aux" 1787905053 5557 45211e982d206b4e1c7870d33c276f68 "xelatex"
-  "q1_paper_draft.tex" 1787905039 17918 95a519144a5c27571c5ffae11e2964a9 ""
+  "q1_paper_draft.aux" 1787907271 6951 b9147bc4002e32265776456d1eff8b0f "xelatex"
+  "q1_paper_draft.tex" 1787907246 25413 3550ba8028396dbf32724419cbb12de2 ""
   (generated)
   "q1_paper_draft.aux"
   "q1_paper_draft.log"
