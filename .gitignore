@@ -4,3 +4,11 @@ __pycache__/
 .ipynb_checkpoints/
 .vscode/
 .idea/
+
+# 题目附件（版权材料，不入库）
+A题.pdf
+附件/
+
+# 运行日志与可再生缓存
+*.log
+问题4_调头曲线/q4_traj.npz
