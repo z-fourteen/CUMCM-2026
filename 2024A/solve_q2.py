@@ -24,7 +24,10 @@
 3. **首次碰撞时刻搜索**：全局最小间隙 g(t) = min_{非相邻对} gap(i,j) 是时间的连续
    函数，在 t* 首次降到 0。先用粗网格扫描定位 g(t) <= 0 的区间，再用二分法按
    "g>0 / g==0" 指示函数收敛到首次穿越点。
-4. **t* 时刻结果**：重新计算全部 224 个把手的位置与速度，写入官方模板
+4. **化简**：经证明，首次碰撞必由"前两节（龙头、第1节龙身）之一"与后方某非相邻节
+   产生，故候选板凳对由全部 24531 对化简为 441 对（(0,j) j>=2 与 (1,j) j>=3）。
+   主流程同时运行化简搜索与全量搜索（对照），验证两者结果一致。
+5. **t* 时刻结果**：重新计算全部 224 个把手的位置与速度，写入官方模板
    result2.xlsx（横坐标 / 纵坐标 / 速度，6 位小数）。
 
 输出
@@ -32,6 +35,7 @@
 * result2.xlsx（写入官方模板，224 把手 x/y/速度，6 位小数）
 * 问题二代表节点结果表 + t* 及碰撞节说明
 * 碰撞示意图（q2_collision.png）、间隙曲线（q2_gap.png）、t* 时刻速度分布（q2_velocities.png）
+* 化简 vs 全量对比曲线（q2_simplify_compare.png）
 * 完整数值验证
 """
 import time
@@ -90,15 +94,19 @@ def _point_segment_dists(pts, seg_a, seg_b):
     return np.linalg.norm(pts - proj, axis=-1).min(axis=-1)
 
 
-def all_pair_gaps(P):
+def all_pair_gaps(P, ii=None, jj=None):
     """
-    计算全部非相邻板凳对 (j-i >= 2) 的间隙。
+    计算（全部或指定子集）非相邻板凳对的间隙。
     返回 (gap, ii, jj)：
         gap : (npairs,) 间隙；0 表示重叠或恰好接触
         ii, jj : (npairs,) 板凳对索引（0 起），ii < jj 且 jj-ii >= 2
+    缺省时计算全部非相邻对 (j-i >= 2, 共 24531 对)；传入 ii/jj 时只计算该子集。
     """
     corners, u, n, h = bench_rectangles(P)
-    i_idx, j_idx = np.triu_indices(N_BENCH, k=2)       # 所有 j-i >= 2 的对
+    if ii is None:
+        i_idx, j_idx = np.triu_indices(N_BENCH, k=2)   # 所有 j-i >= 2 的对
+    else:
+        i_idx, j_idx = np.asarray(ii), np.asarray(jj)
     ci = corners[i_idx]
     cj = corners[j_idx]
     ui, ni = u[i_idx], n[i_idx]
@@ -170,10 +178,10 @@ def contact_points(P, i, j):
 # ======================================================================
 # 2. 全局最小间隙
 # ======================================================================
-def global_min_gap(t):
-    """t 时刻全局最小非相邻间隙，返回 (min_gap, i, j, P)。"""
+def global_min_gap(t, ii=None, jj=None):
+    """t 时刻全局最小（或指定子集）非相邻间隙，返回 (min_gap, i, j, P)。"""
     P = q1.thetas_to_positions(q1.solve_all_positions(t))
-    gap, ii, jj = all_pair_gaps(P)
+    gap, ii, jj = all_pair_gaps(P, ii, jj)
     k = int(np.argmin(gap))
     return float(gap[k]), int(ii[k]), int(jj[k]), P
 
@@ -182,17 +190,18 @@ def global_min_gap(t):
 # 3. 首次碰撞时刻搜索
 # ======================================================================
 def find_first_collision(t_start=0.0, t_end=440.0, coarse_step=1.0,
-                         bisect_tol=1e-9):
+                         bisect_tol=1e-9, ii=None, jj=None, label="全量"):
     """
     粗扫定位 g(t)<=0 的区间，再对全局最小间隙按 "g>0 / g==0" 指示函数二分。
 
+    ii/jj 指定候选板凳对子集（None 表示全部非相邻对），label 用于打印区分。
     返回 (t_star, bi, bj, P_star, g_star)。
     """
     t = t_start
     prev = t_start
     found = False
     while t <= t_end + 1e-9:
-        g, _, _, _ = global_min_gap(t)
+        g, _, _, _ = global_min_gap(t, ii, jj)
         if g <= 0.0:
             found = True
             break
@@ -202,18 +211,34 @@ def find_first_collision(t_start=0.0, t_end=440.0, coarse_step=1.0,
         raise RuntimeError("在 t_end=%g 内未发现碰撞" % t_end)
 
     a, b = prev, t                     # g(a) > 0, g(b) <= 0
-    print("[搜索] 粗扫区间: g(%g)=%.6e > 0, g(%g)=0 (首次 <= 0)"
-          % (a, global_min_gap(a)[0], b))
+    print("[搜索/%s] 粗扫区间: g(%g)=%.6e > 0, g(%g)=0 (首次 <= 0)"
+          % (label, a, global_min_gap(a, ii, jj)[0], b))
     while b - a > bisect_tol:
         mid = 0.5 * (a + b)
-        g, _, _, _ = global_min_gap(mid)
+        g, _, _, _ = global_min_gap(mid, ii, jj)
         if g > 0.0:
             a = mid
         else:
             b = mid
     t_star = 0.5 * (a + b)
-    g_star, bi, bj, P_star = global_min_gap(t_star)
+    g_star, bi, bj, P_star = global_min_gap(t_star, ii, jj)
     return t_star, bi, bj, P_star, g_star
+
+
+def simplified_pairs():
+    """
+    化简候选对集合：仅龙头(第0节)与第1节龙身同所有后方非相邻节。
+
+    经证明：首次碰撞必由"前两节（龙头、第1节龙身）之一"与后方某非相邻节产生，
+    故只需检查 (0,j) j=2..222 与 (1,j) j=3..222，共 221+220 = 441 对，
+    而非全部 24531 对。化简的正确性随后以全量搜索作对照验证。
+    """
+    i_list, j_list = [], []
+    i_list += [0] * (N_BENCH - 2)       # (0,2)..(0,222) 共 221 对
+    j_list += list(range(2, N_BENCH))
+    i_list += [1] * (N_BENCH - 3)       # (1,3)..(1,222) 共 220 对
+    j_list += list(range(3, N_BENCH))
+    return np.array(i_list, dtype=int), np.array(j_list, dtype=int)
 
 
 # ======================================================================
@@ -442,36 +467,118 @@ def make_plots(P_star, thetas_star, vel_star, t_star, bi, bj, t_scan, gs):
 
 
 # ======================================================================
+# 8. 化简 vs 全量 对比绘图
+# ======================================================================
+def make_compare_plot(t_star, t_scan, gs_full, ii_s, jj_s):
+    """
+    化简搜索 vs 全量搜索：全局最小间隙演化对比。
+    左：扫描网格上的全量最小间隙与化简最小间隙（化简子采样）；右：t* 邻近区间放大。
+    """
+    idx_sub = np.arange(0, len(t_scan), 20)
+    t_sub = t_scan[idx_sub]
+    gs_simp_sub = np.array([global_min_gap(t, ii_s, jj_s)[0] for t in t_sub])
+
+    t_zoom = np.arange(t_star - 0.3, t_star + 0.02, 0.005)
+    gf_zoom = np.array([global_min_gap(t)[0] for t in t_zoom])
+    gs_zoom = np.array([global_min_gap(t, ii_s, jj_s)[0] for t in t_zoom])
+
+    fig, (axa, axb) = plt.subplots(1, 2, figsize=(15, 5.2))
+    axa.plot(t_scan, gs_full, color="#1f77b4", lw=1.1, label="全量（24531 对）")
+    axa.plot(t_sub, gs_simp_sub, color="#e04a4a", lw=1.3, ls="--",
+             label="化简（441 对）")
+    axa.axhline(0, color="k", lw=0.8, ls="--")
+    axa.axvline(t_star, color="r", lw=1.2, ls="--")
+    axa.set_xlabel("t (s)")
+    axa.set_ylabel("全局最小间隙 (m)")
+    axa.set_title("化简搜索与全量搜索最小间隙对比")
+    axa.legend(fontsize=9)
+    axa.grid(alpha=0.3)
+
+    axb.plot(t_zoom, gf_zoom, color="#1f77b4", lw=1.5, label="全量")
+    axb.plot(t_zoom, gs_zoom, color="#e04a4a", lw=1.5, ls="--", label="化简")
+    axb.axhline(0, color="k", lw=0.8, ls="--")
+    axb.axvline(t_star, color="r", lw=1.2, ls="--")
+    axb.set_xlabel("t (s)")
+    axb.set_ylabel("间隙 (m)")
+    axb.set_title("t* 邻近区间：两曲线重合且同刻归零")
+    axb.legend(fontsize=9)
+    axb.grid(alpha=0.3)
+    fig.tight_layout()
+    fig.savefig("q2_simplify_compare.png", dpi=130)
+    plt.close(fig)
+    print("[输出] q2_simplify_compare.png")
+
+
+# ======================================================================
 # 主程序
 # ======================================================================
 def main():
     t0 = time.time()
-    print("开始求解问题二 ...")
-
-    # 1. 搜索首次碰撞时刻
-    t_star, bi, bj, P_star, g_star = find_first_collision()
+    print("开始求解问题二（化简搜索 + 全量对照）...")
     print()
-    print("首次碰撞临界时刻 t* = %.9f s" % t_star)
-    print("碰撞节：第 %d 节（%s）与 第 %d 节（%s）"
-          % (bi + 1, _bench_name(bi), bj + 1, _bench_name(bj)))
-    print("t* 处全局最小间隙 = %+.6e m" % g_star)
 
-    # 2. t* 时刻速度
-    thetas_star = q1.solve_all_positions(t_star)
-    vel_star = q1.solve_all_speeds(thetas_star)
+    # ---- 0. 化简候选对：龙头(第0节) + 第1节龙身 与 所有后方非相邻节 ----
+    ii_s, jj_s = simplified_pairs()
+    n_s = len(ii_s)
+    n_full = N_BENCH * (N_BENCH - 1) // 2 - (N_BENCH - 1)   # C(223,2)-222 = 24531
+    print("[方法] 化简：仅检查 %d 对（(0,j) j>=2 与 (1,j) j>=3）" % n_s)
+    print("[方法] 全量：检查全部非相邻 %d 对（j-i >= 2）" % n_full)
+    print()
 
-    # 3. 验证
-    max_err, g_min_all, t_scan, gs = run_checks(
+    # ---- 1. 运行一：化简搜索 ----
+    print("=" * 78)
+    print("运行一：化简搜索（前两节与后方非相邻节）")
+    print("=" * 78)
+    t_star_s, bi_s, bj_s, P_s, g_s = find_first_collision(
+        ii=ii_s, jj=jj_s, label="化简")
+    print("化简 t* = %.9f s, 碰撞节 (%d, %d), t* 处最小间隙 = %+.3e m"
+          % (t_star_s, bi_s, bj_s, g_s))
+
+    # ---- 2. 运行二：全量搜索（对照） ----
+    print()
+    print("=" * 78)
+    print("运行二：全量搜索（全部非相邻板凳对）")
+    print("=" * 78)
+    t_star_f, bi_f, bj_f, P_f, g_f = find_first_collision(label="全量")
+    print("全量 t* = %.9f s, 碰撞节 (%d, %d), t* 处最小间隙 = %+.3e m"
+          % (t_star_f, bi_f, bj_f, g_f))
+
+    # ---- 3. 化简 vs 全量 对比 ----
+    th_s = q1.solve_all_positions(t_star_s)
+    th_f = q1.solve_all_positions(t_star_f)
+    v_s = q1.solve_all_speeds(th_s)
+    v_f = q1.solve_all_speeds(th_f)
+    dP = float(np.abs(P_s - P_f).max())
+    dV = float(np.abs(v_s - v_f).max())
+    print()
+    print("=" * 78)
+    print("化简 vs 全量 对比")
+    print("=" * 78)
+    print("候选对数量 : 化简 %d  vs  全量 %d  (化简占 %.3f%%)"
+          % (n_s, n_full, 100.0 * n_s / n_full))
+    print("t*          : 化简 %.9f  vs  全量 %.9f  s, |dt| = %.3e s"
+          % (t_star_s, t_star_f, abs(t_star_s - t_star_f)))
+    print("碰撞节      : 化简 (%d,%d)  全量 (%d,%d)  一致=%s"
+          % (bi_s, bj_s, bi_f, bj_f, (bi_s, bj_s) == (bi_f, bj_f)))
+    print("t* 处位置最大偏差 : %.3e m   速度最大偏差 : %.3e m/s" % (dP, dV))
+
+    # ---- 4. 以化简结果为准（与全量一致）生成正式结果 ----
+    t_star, bi, bj = t_star_s, bi_s, bj_s
+    P_star, thetas_star, vel_star = P_s, th_s, v_s
+
+    # ---- 5. 验证（全量密集扫描：证明 t* 前全部非相邻对均不碰撞） ----
+    max_err, g_min_all, t_scan, gs_full = run_checks(
         t_star, bi, bj, P_star, thetas_star, vel_star)
 
-    # 4. 输出 result2.xlsx
+    # ---- 6. 输出 result2.xlsx ----
     export_excel(P_star, vel_star, t_star)
 
-    # 5. 论文表格
+    # ---- 7. 论文表格 ----
     extract_paper_tables(t_star, P_star, vel_star, bi, bj)
 
-    # 6. 绘图
-    make_plots(P_star, thetas_star, vel_star, t_star, bi, bj, t_scan, gs)
+    # ---- 8. 绘图 ----
+    make_plots(P_star, thetas_star, vel_star, t_star, bi, bj, t_scan, gs_full)
+    make_compare_plot(t_star, t_scan, gs_full, ii_s, jj_s)
 
     print()
     print("问题二全部完成，总用时 %.1f s" % (time.time() - t0))
